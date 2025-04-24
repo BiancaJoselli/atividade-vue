@@ -1,5 +1,5 @@
 <script setup>
-import { computed, reactive, ref } from 'vue';
+import { ref } from 'vue';
 
 
 const livros = [
@@ -213,6 +213,24 @@ const statusCart = ref(true);
         </section>
     </div>
 </main>
+
+<footer>
+
+    <p>IFbooks</p>
+
+    <div class="redes-sociais">
+        <ul>
+            <li><a href="#"><span class="fa-brands fa-square-facebook"></span></a></li>
+            <li><a href="#"><span class="fa-brands fa-instagram"></span></a></li>
+            <li><a href="#"><span class="fa-brands fa-twitter"></span></a></li>
+        </ul>
+    </div>
+
+    <div class="contact">
+        <p><i class="fa-solid fa-phone"></i></p>
+
+    </div>
+</footer>
 </template>
 
 <style scoped>
