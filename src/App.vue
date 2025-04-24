@@ -7,56 +7,56 @@ const livros = [
         titulo: 'Harry Potter e a Pedra Filosofal',
         autor: 'J. K. Rowling',
         preco: 50.99,
-        capa: '',
+        capa: 'https://m.media-amazon.com/images/I/81ibfYk4qmL._SY385_.jpg',
     },
     {
         id: 2,
         titulo: 'Harry Potter e a Câmara Secreta',
         autor: 'J. K. Rowling',
         preco: 45.90,
-        capa: '',
+        capa: 'https://m.media-amazon.com/images/I/81D+5aMHzFL._SY425_.jpg',
     },
     {
         id: 3,
         titulo: 'Harry Potter e o Prisioneiro de Azkaban',
         autor: 'J. K. Rowling',
         preco: 40.70,
-        capa: '',
+        capa: 'https://m.media-amazon.com/images/I/81QnqHwRiUL._SY425_.jpg',
     },
     {
         id: 4,
         titulo: 'Harry Potter e o Cálice de Fogo',
         autor: 'J. K. Rowling',
         preco: 60.89,
-        capa: '',
+        capa: 'https://m.media-amazon.com/images/I/51Z9TzC6BmL._SY445_SX342_.jpg',
     },
     {
         id: 5,
         titulo: 'Harry Potter e a Ordem da Fênix',
         autor: 'J. K. Rowling',
         preco: 70.29,
-        capa: '',
+        capa: 'https://m.media-amazon.com/images/I/51DSlL4+hrL._SY445_SX342_.jpg',
     },
     {
         id: 6,
         titulo: 'Harry Potter e o Enigma do Príncipe',
         autor: 'J. K. Rowling ',
         preco: 65.55,
-        capa: '',
+        capa: 'https://m.media-amazon.com/images/I/51A-jMP5AML._SY445_SX342_.jpg',
     },
     {
         id: 7,
         titulo: 'Harry Potter e as Relíquias da Morte',
         autor: 'J. K. Rowling',
         preco: 80.30,
-        capa: 'https://m.media-amazon.com/images/I/81PbdwXqKkL._SY425_.jpg',
+        capa: 'https://m.media-amazon.com/images/I/51nqfHDw2aL._SY445_SX342_.jpg',
     },
     {
         id: 8,
         titulo: 'Harry Potter e a Criança Amaldiçoada',
         autor: 'J. K. Rowling',
         preco: 58.87,
-        capa: '',
+        capa: 'https://m.media-amazon.com/images/I/91m1WPwTusL._SY425_.jpg',
     }
 ];
 
@@ -68,7 +68,7 @@ const livros = [
     <div class="logo">
         <a href="#">IFbooks</a>
         <hr/>
-        <p>Apreço a leitura</p>
+        <p>Apreço a <br>leitura</p>
     </div>
 
     <div class="pesquisa">
@@ -132,11 +132,39 @@ const livros = [
         <li>{{ livro.titulo }}</li>
         <li>{{ livro.autor }}</li>
         <li>R${{ livro.preco }}</li>
-        <button>Comprar</button>
+        <a href="#">Comprar</a>
     </ul>
     </section>
 
 </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+header nav {
+    display: flex;
+}
+
+header nav div.logo{
+    display: flex;
+    padding: 1vw;
+}
+
+header nav div.logo a {
+    padding: 0.5vw 0.5vw 0 0.5vw;
+    text-decoration: none;
+    color: #231F2D;
+
+}
+
+header nav div.logo p {
+    padding: 0 0.5vw;
+    text-align: center;
+}
+
+
+header nav div.menu ul {
+    display: flex;
+}
+
+</style>
