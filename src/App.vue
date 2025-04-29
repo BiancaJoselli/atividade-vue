@@ -1,5 +1,6 @@
 <script setup>
-import { computed, reactive } from 'vue';
+import { computed, reactive, ref } from 'vue';
+
 
 const livros = [
     {
@@ -60,14 +61,17 @@ const livros = [
     }
 ];
 
+const statusCart = ref(true);
+
+
 </script>
 
 <template>
 <header>
     <nav>
     <div class="logo">
-        <a href="#">IFbooks</a>
-        <hr/>
+        <button @click="statusCart = false">IFbooks</button>
+        <hr>
         <p>Apreço a <br>leitura</p>
     </div>
 
@@ -84,7 +88,7 @@ const livros = [
         </ul>
         <div class="icons">
             <ul>
-                <li><a href="#"><span class="material-symbols-outlined">search</span></a></li>
+                <li><a @click="statusCart = true"><span class="material-symbols-outlined">shopping_cart</span></a></li>
                 <li class="linha"><a href="#"><span class="material-symbols-outlined">favorite</span></a></li>
                 <li><a href="#"><span class="material-symbols-outlined">person</span></a></li>
             </ul>
@@ -95,53 +99,119 @@ const livros = [
 </header>
 
 <main>
-    <section class="banner">
-    <div>
-        <p class="autor">Autor de Abril</p>
-        <h1>Eric-Emanuel Schmitt </h1>
-        <p>Eric-Emmanuel Schmitt has been awarded more than 20 literary prizes and distinctions, and in 2001 he received the title of Chevalier des Arts et des Lettres. His books have been translated into over 40 languages.</p>
-        <a href="#">Acessar página do livro</a>
-    </div>
-    <div>
-        <img src="../public/book.png" alt="imagem livro noc ognia">
-    </div>
-    </section>
+    <div id="carrinho" v-if="statusCart">
+        <section class="carrinho">
+            <h1>Carrinho</h1>
+            
+            <table>
+                <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Quantidade</th>
+                    <th>Subtotal</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td>rrrrr</td>
+                    <td>rrrrr</td>
+                    <td>rrrrr</td>
+                </tr>
+                <tr>
+                    <td>rrrrr</td>
+                    <td>rrrrr</td>
+                    <td>rrrrr</td>
 
-    <section class="info">
-        <hr>
-        <ul>
+                </tr>
+                <tr>
+                    <td>rrrrr</td>
+                    <td>rrrrr</td>
+                    <td>rrrrr</td>
+
+                </tr>
+                
+                </tbody>
+                
+            </table>
+    
+            <button @click="statusCart = false">Voltar para a loja</button>
+
+            <div>
+            <div class="cupom">
+                <input type="text" placeholder="Código do cupom" />
+                <button class="desconto">Inserir Cupom</button>
+            </div>
+            <div>
+                <h3>Total da Compra</h3>
+
+                <table class="total">
+                    <tr>
+                    <th>Produtos</th>
+                    <td>R$</td>
+                </tr>
+                <tr>
+                    <th>Frete</th>
+                    <td>Grátis</td>
+                </tr>
+                <tr>
+                    <th>Total</th>
+                    <td>R$</td>
+                </tr>
+                </table>
+            </div>
+        </div>
+        
+        </section>
+    </div>
+
+    <div id="home" v-else>
+        <section class="banner">
+        <div>
+            <p class="autor">Autor de Abril</p>
+            <h1>Eric-Emanuel Schmitt </h1>
+            <p>Eric-Emmanuel Schmitt has been awarded more than 20 literary prizes and distinctions, and in 2001 he received the title of Chevalier des Arts et des Lettres. His books have been translated into over 40 languages.</p>
+            <a href="#">Acessar página do livro</a>
+        </div>
+        <div>
+            <img src="../public/book.png" alt="imagem livro noc ognia">
+        </div>
+        </section>
+    
+        <section class="info">
+            <hr>
+            <ul>
+                <li>
+                    <span class="material-symbols-outlined">local_shipping</span>
+                    <p>Frete grátis para SC</p>
+                </li>
+                <li class="barra">
+                    <span class="material-symbols-outlined">star</span>
+                    <p>Livros recomendados</p>
+                </li>
+                <li>
+                    <span class="material-symbols-outlined">menu_book</span>
+                    <p><u>Mais vendidos</u></p>
+                </li>
+            </ul>
+            <hr>
+        </section>
+    
+        <section class="lancamentos">
+    
+        <h2>Lançamentos</h2>
+    
+        <div>
+        <ul v-for="livro in livros" :key="livro.id">
             <li>
-                <span class="material-symbols-outlined">local_shipping</span>
-                <p>Frete grátis para SC</p>
-            </li>
-            <li class="barra">
-                <span class="material-symbols-outlined">star</span>
-                <p>Livros recomendados</p>
-            </li>
-            <li>
-                <span class="material-symbols-outlined">menu_book</span>
-                <p><u>Mais vendidos</u></p>
-            </li>
+            <img :src=" livro.capa " alt="imagem livros"></li>
+            <li class="titulo">{{ livro.titulo }}</li>
+            <li class="autor">{{ livro.autor }}</li>
+            <li class="preco">R${{ livro.preco }}</li>
+            <li><a class="comprar" @click="statusCart = true"><span class="material-symbols-outlined">shopping_cart</span>Comprar</a></li>
         </ul>
-        <hr>
-    </section>
-
-    <section class="lancamentos">
-
-    <h2>Lançamentos</h2>
-
-    <div>
-    <ul v-for="livro in livros" :key="livro.id">
-        <li>
-        <img :src=" livro.capa " alt="imagem livros"></li>
-        <li class="titulo">{{ livro.titulo }}</li>
-        <li class="autor">{{ livro.autor }}</li>
-        <li class="preco">R${{ livro.preco }}</li>
-        <li><a href="#"><span class="material-symbols-outlined">shopping_cart</span>Comprar</a></li>
-    </ul>
+        </div>
+        </section>
     </div>
-    </section>
-
 </main>
 </template>
 
@@ -160,9 +230,11 @@ header nav div.logo{
     padding: 1vw;
 }
 
-header nav div.logo a {
-    padding: 0.5vw 0.5vw 0 0.5vw;
-    text-decoration: none;
+header nav div.logo button {
+    border: none;
+    background-color: #ffff;
+    padding: 0.2vw 0.5vw 0 0.5vw;
+    font-size: 1rem;
     color: #231F2D;
 
 }
@@ -384,12 +456,90 @@ section.lancamentos div ul li a {
     border-radius: 0.3vw;
     color: #ffff;
     padding: 0.5vw 6vw ;
-    margin: 20vw 0;
+    margin: 3vw 0 5vw 0;
+}
+
+
+section.lancamentos a.comprar {
+    display: flex;
+    gap: 1.5px;
+    align-items: center;
 }
 
 section.lancamentos div ul li span{
     margin: 0 0 0 0;
 }
+
+
+/*CARRINHO CSS*/
+
+section.carrinho {
+    font-family: "Inter", sans-serif;
+}
+
+section.carrinho h1 {
+    color: #27AE60;
+    font-size: 1.8rem;
+    font-weight: 600;
+    padding: 8vw 0 2vw 5vw;
+}
+
+section.carrinho table {
+    /*text-align: center;
+    align-items: center;
+    justify-content: center;*/
+    margin: auto;
+}
+
+section.carrinho table thead th{
+    font-size: 1.2rem;
+    color: #382C2C;
+    padding: 1vw 10vw;
+    border-bottom: 2px solid #27AE60;
+    
+}
+
+section.carrinho table tbody td {
+    text-align: center;
+    padding: 3vw 0 3vw 0;
+    border-bottom: 2px solid #d8d8d8;
+}
+
+section.carrinho  button {
+    margin: 5vw 11vw;
+    padding: 1vw 2vw;
+    background-color: #ffff;
+    border: 1px solid #302b3b;
+    border-radius: 0.3vw;
+    font-weight: 550;
+}
+
+section.carrinho div {
+    display: flex;
+}
+
+section.carrinho div.cupom input{
+    margin: 5vw 1vw 0 11vw;
+    padding: 0 0 0 2vw;
+    width: 18vw;
+    height: 4vw;
+    border: 1.5px solid #2e283a;
+    font-weight: 600;
+    border-radius: 0.3vw;
+}
+
+section.carrinho  button.desconto {
+    margin: 5vw 0 2vw 0;
+    padding: 1vw 2vw;
+    background-color: #27AE60;
+    border: none;
+    border-radius: 0.3vw;
+    font-weight: 550;
+    width: 18vw;
+    height: 4vw;
+    color: #ffff;
+}
+
 
 
 
