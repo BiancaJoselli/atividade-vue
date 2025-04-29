@@ -1,5 +1,5 @@
 <script setup>
-import { computed, reactive } from 'vue'
+import { computed, reactive, ref } from 'vue'
 
 const livros = [
     {
@@ -135,7 +135,7 @@ const livros = [
             <hr />
 
             <ul v-for="livro in livros" :key="livro.id">
-                <li>
+                    <li>
                     <img :src="livro.capa" alt="imagem livros" />
                 </li>
                 <li>{{ livro.titulo }}</li>
@@ -166,24 +166,21 @@ const livros = [
             </div>
 
             <div class="contato-pagamento">
-                <div class="contato">
-                    <h3>Contato</h3>
-                    <ul>
-                        <li><span class="material-symbols-outlined"> call</span> +55 47 4004-5263</li>
-                        <li><span class="fa-solid fa-clock"></span> 8h às 23h - Seg a Sex</li>
-                        <li><span class="fa-solid fa-envelope"></span> contato@ifbooks.com</li>
-                    </ul>
-                </div>
 
-                <div class="pagamento">
-                    <img src="/logo/paipal.png" alt="Paipal" />
-                    <img src="/logo/MasterCard.png" alt="Mastercard" />
-                    <img src="/logo/VISA.png" alt="Visa" />
-                </div>
+                <h3>Contato</h3>
+                <ul>
+                    <li><span class="material-symbols-outlined"> call</span> +55 47 4004-5263</li>
+                    <li><span class="fa-solid fa-clock"></span> 8h às 23h - Seg a Sex</li>
+                    <li><span class="fa-solid fa-envelope"></span> contato@ifbooks.com</li>
+                </ul>
+
+                <img src="/logo/paipal.png" alt="Paipal" />
+                <img src="/logo/MasterCard.png" alt="Mastercard" />
+                <img src="/logo/VISA.png" alt="Visa" />
+
             </div>
         </div>
-        <hr />
-
+        <hr>
         <p>© Alguns direitos reservados. IFbooks 2025.</p>
     </footer>
 </template>
@@ -203,6 +200,7 @@ a {
 .gerais {
     display: flex;
     justify-content: space-between;
+
 }
 
 .redes-sociais {
@@ -226,10 +224,10 @@ a {
 }
 
 .contato-pagamento {
-    margin: 2vw 10vw 0 0;
+    margin: 2vw 10vw 5vw 0;
 }
 
-.contato-pagamento h3{
+.contato-pagamento h3 {
     font-size: 18px;
     font-weight: 600;
 
@@ -237,8 +235,20 @@ a {
 
 .contato-pagamento ul {
     color: #ffffffa6;
-    margin: 2vw 0 0 0;
+    margin: 2vw 0 3vw 0;
+
 }
 
+.contato-pagamento ul li {
+    margin-top: 20px;
+}
 
+.contato-pagamento img {
+    padding-right: 10px;
+}
+
+p {
+    text-align: center;
+    padding: 1.2vw 0 ;
+}
 </style>
