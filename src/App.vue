@@ -61,7 +61,7 @@ const livros = [
     }
 ];
 
-const statusCart = ref(true);
+const statusCart = ref(false);
 
 
 </script>
@@ -141,23 +141,26 @@ const statusCart = ref(true);
                 <input type="text" placeholder="Código do cupom" />
                 <button class="desconto">Inserir Cupom</button>
             </div>
-            <div>
+            <div class="compraFinal">
                 <h3>Total da Compra</h3>
 
-                <table class="total">
-                    <tr>
-                    <th>Produtos</th>
-                    <td>R$</td>
-                </tr>
-                <tr>
-                    <th>Frete</th>
-                    <td>Grátis</td>
-                </tr>
-                <tr>
-                    <th>Total</th>
-                    <td>R$</td>
-                </tr>
-                </table>
+                <ul>
+                    <li>
+                        <p>Produtos</p>
+                        <p>R$</p>
+                    </li>
+                    <li>
+                        <p>Frete</p>
+                        <p>Grátis</p>
+                    </li>
+
+                    <li>
+                        <p>Total</p>
+                        <p>R$</p>
+                    </li>
+                </ul>
+
+                <button class="pagamento">Ir para o pagamento</button>
             </div>
         </div>
         
@@ -485,9 +488,6 @@ section.carrinho h1 {
 }
 
 section.carrinho table {
-    /*text-align: center;
-    align-items: center;
-    justify-content: center;*/
     margin: auto;
 }
 
@@ -514,7 +514,7 @@ section.carrinho  button {
     font-weight: 550;
 }
 
-section.carrinho div {
+section.carrinho > div {
     display: flex;
 }
 
@@ -528,8 +528,8 @@ section.carrinho div.cupom input{
     border-radius: 0.3vw;
 }
 
-section.carrinho  button.desconto {
-    margin: 5vw 0 2vw 0;
+section.carrinho  div button.desconto {
+    margin: 5vw 2vw 0 0;
     padding: 1vw 2vw;
     background-color: #27AE60;
     border: none;
@@ -540,7 +540,28 @@ section.carrinho  button.desconto {
     color: #ffff;
 }
 
+section.carrinho div div.compraFinal {
+    margin: 5vw 2vw 5vw 2vw;
+    border: 1.5px solid #2e283a;
+    padding: 2vw;
+}
 
+section.carrinho div div.compraFinal h3 {
+    font-weight: 600;
+}
 
+section.carrinho div div.compraFinal ul li {
+    display: flex;
+    padding: 2vw;
+    border-bottom: 2px solid #d8d8d8;
+}
 
+section.carrinho div div.compraFinal button.pagamento {
+    text-align: center;
+    background-color: #27AE60;
+    border: none;
+    border-radius: 0.3vw;
+    font-weight: 550;
+    color: #ffff;
+}
 </style>
