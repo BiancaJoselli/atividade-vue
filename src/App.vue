@@ -1,5 +1,5 @@
 <script setup>
-import { computed, reactive, ref } from 'vue'
+import { ref } from 'vue'
 
 const livros = [
     {
@@ -14,14 +14,14 @@ const livros = [
         titulo: 'Harry Potter e a Câmara Secreta',
         autor: 'J. K. Rowling',
         preco: 45.9,
-        capa: '',
+        capa: 'https://m.media-amazon.com/images/I/81D+5aMHzFL._SY425_.jpg',
     },
     {
         id: 3,
         titulo: 'Harry Potter e o Prisioneiro de Azkaban',
         autor: 'J. K. Rowling',
         preco: 40.7,
-        capa: '',
+        capa: 'https://m.media-amazon.com/images/I/81QnqHwRiUL._SY425_.jpg',
     },
     {
         id: 4,
@@ -255,72 +255,6 @@ const statusCart = ref(false)
 </template>
 
 <style scoped>
-footer {
-    background-color: #27ae60;
-    color: #ffffff;
-    font-family:
-        'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-
-a {
-    color: #ffffff;
-}
-
-.gerais {
-    display: flex;
-    justify-content: space-between;
-
-}
-
-.redes-sociais {
-    padding: 2vw 0 8vw 10vw;
-}
-
-.redes-sociais h3 {
-    padding: 4px;
-}
-
-.redes-sociais ul {
-    display: flex;
-    font-size: 35px;
-    padding: 2px 0;
-    margin: 8px 0;
-}
-
-.redes-sociais ul li {
-    margin: 10px 6px;
-
-}
-
-.contato-pagamento {
-    margin: 2vw 10vw 5vw 0;
-}
-
-.contato-pagamento h3 {
-    font-size: 18px;
-    font-weight: 600;
-
-}
-
-.contato-pagamento ul {
-    color: #ffffffa6;
-    margin: 2vw 0 3vw 0;
-
-}
-
-.contato-pagamento ul li {
-    margin-top: 20px;
-}
-
-.contato-pagamento img {
-    padding-right: 10px;
-}
-
-p {
-    text-align: center;
-    padding: 1.2vw 0;
-}
-
 
 header nav {
     display: flex;
@@ -412,6 +346,9 @@ header nav div.icons ul hr {
     padding: 1vw 0;
 }
 
+
+/*Main CSS*/
+
 section.banner {
     display: flex;
     font-family: "Inter", sans-serif;
@@ -422,7 +359,7 @@ section.banner div p.autor {
     padding: 1vw;
     text-align: center;
     width: 12vw;
-    margin: 15vw 0 2vw 10vw;
+    margin: 14vw 0 2vw 10vw;
     border-radius: 0.5vw;
     color: #27AE60;
 }
@@ -436,10 +373,11 @@ section.banner div h1 {
 }
 
 section.banner div p {
-    margin: 2vw 5vw 5vw 10vw;
+    margin: 2vw 0 5vw 10vw;
     color: #4D4C4C;
     line-height: 2.3vw;
     padding: 0 18vw 0 0;
+    text-align: justify;
 }
 
 section.banner div a {
@@ -451,8 +389,13 @@ section.banner div a {
     color: #ffff;
 }
 
+section.banner div img {
+    padding: 8vw 10vw 0 0;
+    height: 52vw;
+}
+
 section.info {
-    margin: 8vw 0;
+    margin: 2vw 0;
     font-family: "Inter", sans-serif;
 
 }
@@ -518,7 +461,7 @@ section.lancamentos div {
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-    padding: 20px;
+    padding: 3vw 10vw;
     margin: 2vw 0 1vw 0;
 }
 
@@ -586,7 +529,7 @@ section.carrinho h1 {
     color: #27AE60;
     font-size: 1.8rem;
     font-weight: 600;
-    padding: 8vw 0 2vw 5vw;
+    padding: 8vw 0 2vw 14vw;
 }
 
 section.carrinho table {
@@ -608,7 +551,7 @@ section.carrinho table tbody td {
 }
 
 section.carrinho button {
-    margin: 5vw 11vw;
+    margin: 5vw 14vw;
     padding: 1vw 2vw;
     background-color: #ffff;
     border: 1px solid #302b3b;
@@ -618,10 +561,11 @@ section.carrinho button {
 
 section.carrinho>div {
     display: flex;
+    justify-content: space-between;
+    margin: 5vw 11vw 0 11vw;
 }
 
 section.carrinho div.cupom input {
-    margin: 5vw 1vw 0 11vw;
     padding: 0 0 0 2vw;
     width: 18vw;
     height: 4vw;
@@ -631,7 +575,6 @@ section.carrinho div.cupom input {
 }
 
 section.carrinho div button.desconto {
-    margin: 5vw 2vw 0 0;
     padding: 1vw 2vw;
     background-color: #27AE60;
     border: none;
@@ -643,9 +586,9 @@ section.carrinho div button.desconto {
 }
 
 section.carrinho div div.compraFinal {
-    margin: 5vw 2vw 5vw 2vw;
     border: 1.5px solid #2e283a;
     padding: 2vw;
+    width: 20%;
 }
 
 section.carrinho div div.compraFinal h3 {
@@ -654,11 +597,13 @@ section.carrinho div div.compraFinal h3 {
 
 section.carrinho div div.compraFinal ul li {
     display: flex;
+    justify-content: space-between;
     padding: 2vw;
     border-bottom: 2px solid #d8d8d8;
 }
 
 section.carrinho div div.compraFinal button.pagamento {
+    margin: 2vw;
     text-align: center;
     background-color: #27AE60;
     border: none;
@@ -666,4 +611,73 @@ section.carrinho div div.compraFinal button.pagamento {
     font-weight: 550;
     color: #ffff;
 }
+
+/*Footer CSS*/
+
+footer {
+    background-color: #27ae60;
+    color: #ffffff;
+    font-family:
+        'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+a {
+    color: #ffffff;
+}
+
+.gerais {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.redes-sociais {
+    padding: 2vw 0 8vw 10vw;
+}
+
+.redes-sociais h3 {
+    padding: 4px;
+}
+
+.redes-sociais ul {
+    display: flex;
+    font-size: 35px;
+    padding: 2px 0;
+    margin: 8px 0;
+}
+
+.redes-sociais ul li {
+    margin: 10px 6px;
+
+}
+
+.contato-pagamento {
+    margin: 2vw 10vw 5vw 0;
+}
+
+.contato-pagamento h3 {
+    font-size: 18px;
+    font-weight: 600;
+
+}
+
+.contato-pagamento ul {
+    color: #ffffffa6;
+    margin: 2vw 0 3vw 0;
+
+}
+
+.contato-pagamento ul li {
+    margin-top: 20px;
+}
+
+.contato-pagamento img {
+    padding-right: 10px;
+}
+
+p {
+    text-align: center;
+    padding: 1.2vw 0;
+}
+
 </style>
