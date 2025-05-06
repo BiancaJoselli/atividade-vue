@@ -1,13 +1,15 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
-const livros = [
+const livros = ref([
     {
         id: 1,
         titulo: 'Harry Potter e a Pedra Filosofal',
         autor: 'J. K. Rowling',
         preco: 50.99,
         capa: 'https://m.media-amazon.com/images/I/61jgm6ooXzL._SY425_.jpg',
+        quantidade: 0,
+
     },
     {
         id: 2,
@@ -15,6 +17,8 @@ const livros = [
         autor: 'J. K. Rowling',
         preco: 45.9,
         capa: 'https://m.media-amazon.com/images/I/81D+5aMHzFL._SY425_.jpg',
+        quantidade: 0,
+
     },
     {
         id: 3,
@@ -22,6 +26,8 @@ const livros = [
         autor: 'J. K. Rowling',
         preco: 40.7,
         capa: 'https://m.media-amazon.com/images/I/81QnqHwRiUL._SY425_.jpg',
+        quantidade: 0,
+
     },
     {
         id: 4,
@@ -29,6 +35,8 @@ const livros = [
         autor: 'J. K. Rowling',
         preco: 60.89,
         capa: 'https://m.media-amazon.com/images/I/51SC7epwnLL._SY425_.jpg',
+        quantidade: 0,
+
     },
     {
         id: 5,
@@ -36,6 +44,7 @@ const livros = [
         autor: 'J. K. Rowling',
         preco: 70.29,
         capa: 'https://m.media-amazon.com/images/I/51DSlL4+hrL._SY445_SX342_.jpg',
+        quantidade: 0,
     },
     {
         id: 6,
@@ -43,6 +52,7 @@ const livros = [
         autor: 'J. K. Rowling ',
         preco: 65.55,
         capa: 'https://m.media-amazon.com/images/I/51A-jMP5AML._SY445_SX342_.jpg',
+        quantidade: 0,
     },
     {
         id: 7,
@@ -50,6 +60,7 @@ const livros = [
         autor: 'J. K. Rowling',
         preco: 80.3,
         capa: 'https://m.media-amazon.com/images/I/81PbdwXqKkL._SY425_.jpg',
+        quantidade: 0,
     },
     {
         id: 8,
@@ -57,10 +68,16 @@ const livros = [
         autor: 'J. K. Rowling',
         preco: 58.87,
         capa: 'https://m.media-amazon.com/images/I/51jZ+cwx44L._SY445_SX342_.jpg',
+        quantidade: 0,
     },
-]
+]);
 
-const statusCart = ref(false)
+const statusCart = ref(false);
+
+const total = computed(() => {
+    return livros.value.reduce((total, livro) => total + (livro.preco * livro.quantidade), 0);
+})
+
 </script>
 
 <template>
@@ -98,10 +115,13 @@ const statusCart = ref(false)
 
     <main>
         <div id="carrinho" v-if="statusCart">
-            <section class="carrinho">
-                <h1>Carrinho</h1>
+            
+            <h1>Carrinho</h1>
 
-                <table>
+            <section class="carrinho" v-for="(livro, id) in livros" :key="id">
+                
+
+                <table v-if="livro.quantidade >= 1">
                     <thead>
                         <tr>
                             <th>Título</th>
@@ -110,28 +130,30 @@ const statusCart = ref(false)
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>rrrrr</td>
-                            <td>rrrrr</td>
-                            <td>rrrrr</td>
-                        </tr>
-                        <tr>
-                            <td>rrrrr</td>
-                            <td>rrrrr</td>
-                            <td>rrrrr</td>
+                        <tr >
+                            <td><img :src="livro.capa" alt="Capa livro">
+                                <div>
+                                    <h3>{{ livro.titulo }}</h3>
+                                    <p>{{ livro.autor }}</p>
+                                    <p>{{ livro.preco }}</p>
+                                </div>
+                            </td>
 
-                        </tr>
-                        <tr>
-                            <td>rrrrr</td>
-                            <td>rrrrr</td>
-                            <td>rrrrr</td>
+                            <td style="display: flex;">
+                                <button v-if="livro.quantidade > 0" @click="livro.quantidade--">-</button>
+                                <button v-else>-</button>
+                                <p>{{ livro.quantidade }}</p>
+                                <button @click="livro.quantidade++">+</button>
+                            </td>
 
+                            <td>R${{ total.toFixed(2) }}</td>
                         </tr>
-
                     </tbody>
 
                 </table>
+            </section>
 
+            <section>
                 <button @click="statusCart = false">Voltar para a loja</button>
 
                 <div>
@@ -144,8 +166,7 @@ const statusCart = ref(false)
 
                         <ul>
                             <li>
-                                <p>Produtos</p>
-                                <p>R$</p>
+                                <p>Produtos: R${{ total.toFixed(2).replace(".", ",") }}</p>
                             </li>
                             <li>
                                 <p>Frete</p>
@@ -153,14 +174,15 @@ const statusCart = ref(false)
                             </li>
 
                             <li>
-                                <p>Total</p>
-                                <p>R$</p>
+                                <p>Total: R${{ total.toFixed(2).replace(".", ",") }}</p>
+
                             </li>
                         </ul>
 
                         <button class="pagamento">Ir para o pagamento</button>
                     </div>
                 </div>
+
 
             </section>
         </div>
@@ -211,7 +233,7 @@ const statusCart = ref(false)
                         <li class="titulo">{{ livro.titulo }}</li>
                         <li class="autor">{{ livro.autor }}</li>
                         <li class="preco">R${{ livro.preco }}</li>
-                        <li><a class="comprar" @click="statusCart = true"><span
+                        <li><a class="comprar" @click="statusCart = true, livro.quantidade += 1"><span
                                     class="material-symbols-outlined">shopping_cart</span>Comprar</a></li>
                     </ul>
                 </div>
@@ -255,7 +277,6 @@ const statusCart = ref(false)
 </template>
 
 <style scoped>
-
 header nav {
     display: flex;
     justify-content: center;
@@ -522,7 +543,7 @@ section.lancamentos div ul li span {
 /*CARRINHO CSS*/
 
 section.carrinho {
-    font-family: "Inter", sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 section.carrinho h1 {
@@ -679,5 +700,4 @@ p {
     text-align: center;
     padding: 1.2vw 0;
 }
-
 </style>
