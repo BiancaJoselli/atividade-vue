@@ -115,11 +115,10 @@ const total = computed(() => {
 
     <main>
         <div id="carrinho" v-if="statusCart">
-            
+
             <h1>Carrinho</h1>
 
             <section class="carrinho" v-for="(livro, id) in livros" :key="id">
-                
 
                 <table v-if="livro.quantidade >= 1">
                     <thead>
@@ -130,33 +129,34 @@ const total = computed(() => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr >
-                            <td><img :src="livro.capa" alt="Capa livro">
+                        <tr>
+                            <td>
+                                <img :src="livro.capa" alt="Capa livro">
                                 <div>
                                     <h3>{{ livro.titulo }}</h3>
                                     <p>{{ livro.autor }}</p>
-                                    <p>{{ livro.preco }}</p>
+                                    <p>R${{ livro.preco }}</p>
                                 </div>
                             </td>
 
-                            <td style="display: flex;">
+                            <td class="quantidade" style="display: flex;">
                                 <button v-if="livro.quantidade > 0" @click="livro.quantidade--">-</button>
                                 <button v-else>-</button>
                                 <p>{{ livro.quantidade }}</p>
                                 <button @click="livro.quantidade++">+</button>
                             </td>
 
-                            <td>R${{ total.toFixed(2) }}</td>
+                            <td class="preco">R${{ total.toFixed(2) }}</td>
                         </tr>
                     </tbody>
 
                 </table>
             </section>
 
-            <section>
+            <section class="finalizandoPedido">
                 <button @click="statusCart = false">Voltar para a loja</button>
 
-                <div>
+                <div class="principal">
                     <div class="cupom">
                         <input type="text" placeholder="Código do cupom" />
                         <button class="desconto">Inserir Cupom</button>
@@ -166,15 +166,16 @@ const total = computed(() => {
 
                         <ul>
                             <li>
-                                <p>Produtos: R${{ total.toFixed(2).replace(".", ",") }}</p>
+                                <p>Produtos:</p>
+                                <p>R${{ total.toFixed(2).replace(".", ",") }}</p>
                             </li>
                             <li>
-                                <p>Frete</p>
+                                <p>Frete:</p>
                                 <p>Grátis</p>
                             </li>
-
                             <li>
-                                <p>Total: R${{ total.toFixed(2).replace(".", ",") }}</p>
+                                <p>Total:</p>
+                                <p>R${{ total.toFixed(2).replace(".", ",") }}</p>
 
                             </li>
                         </ul>
@@ -539,74 +540,175 @@ section.lancamentos div ul li span {
     margin: 0 0 0 0;
 }
 
-
 /*CARRINHO CSS*/
 
-main {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+section.carrinho {
+    font-family: "Inter", sans-serif;
 }
 
-
-#carrinho h1{
+#carrinho h1 {
     color: #27AE60;
-    margin: 8vw 0 4vw 5vw;
+    margin: 8vw 0 4vw 10vw;
     font-weight: 600;
+    font-family: "Inter", sans-serif;
 }
 
-.carrinho {
+section.carrinho {
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: center;
 }
 
-.carrinho table {
-    margin: 0 auto; 
-    
+section.carrinho table {
+    width: 80%;
+    margin: 0 auto;
 }
 
-.carrinho table thead th {
+section.carrinho thead th {
     font-size: 1.2rem;
     color: #382C2C;
-    padding: 1vw 10vw;
+    padding: 1vw;
     border-bottom: 2px solid #27AE60;
     font-weight: 600;
+    text-align: left;
 }
 
-.carrinho table tbody tr {
-    display: flex;
-    /*align-items: center;
-    padding: 1vw 2vw;*/
+section.carrinho tbody tr {
+    border-bottom: 2px solid #8b8b8b;
 }
 
-.carrinho table tbody tr td {   
+section.carrinho td{
+    padding: 1vw;
+}
+
+section.carrinho td{
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 
-.carrinho table tbody tr td img{
-    width: 25%;
-    margin: 2vw 0 0 5vw;
+
+section.carrinho td img {
+    width: 20%;
+    margin: 2vw 0 0 2vw;
 }
 
-.carrinho table tbody tr td {
-    display: flex;
+section.carrinho td div {
+    padding: 0 2vw;
 }
 
-.carrinho table tbody tr td div {
-    margin: 3vw 3vw;
-}
-
-.carrinho table tbody tr td div h3 {
+section.carrinho td div h3 {
+    font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 1.2vw;
-    font-size: 1.3vw;
+    margin: 2vw 0;
 }
 
-.carrinho table tbody tr td div p:last-child  {
+section.carrinho td div p {
+    font-size: 0.8rem;
+}
+
+section.carrinho td div p:last-child {
+    font-weight: 600;
+    margin: 3vw 0;
+    font-size: 1rem;
+}
+
+section.carrinho td.quantidade {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #000;
+    padding: 0.5vw 1vw;
+    width: fit-content;
+    border-radius: 0.5vw;
+    font-size: 1rem;
+}
+
+section.carrinho td.quantidade button {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+section.carrinho table tbody tr td div p:last-child {
     font-weight: 600;
     margin-top: 1.2vw;
     font-size: 1.2vw;
+}
+
+section.carrinho table tr td.preco {
+    font-weight: 600;
+}
+
+section.finalizandoPedido {
+    font-family: "Inter", sans-serif;
+    margin: 4vw 10vw 4vw 10vw;
+
+}
+
+section.finalizandoPedido button{
+    border: 1px solid #8b8b8b;
+    background-color: #ffffff;
+    padding: 1vw 2vw;
+    border-radius: 0.3vw;
+}
+
+section.finalizandoPedido div.principal{
+    display: flex;
+    justify-content: space-between;
+}
+
+section.finalizandoPedido div.cupom input {
+    margin: 5vw 0.5vw 5vw 0;
+    padding: 1vw 2vw;
+    border: 1px solid #382C2C;
+    border-radius: 0.3vw;
+}
+
+section.finalizandoPedido div.cupom button {
+    background-color: #27AE60;
+    color: #ffff;
+    padding: 1.1vw 2vw;
+    border: none;
+}
+
+
+section.finalizandoPedido div.compraFinal {
+    margin: 5vw 2vw 5vw 2vw;
+    border: 1.5px solid #2e283a;
+    padding: 0.99vw;
+    border-radius: 0.3vw;
+
+}
+
+section.finalizandoPedido div.compraFinal h3 {
+    margin: 0 0 1vw 0;
+    font-size: 1rem;
+
+}
+
+section.finalizandoPedido div.compraFinal ul li  {
+    display: flex;
+    justify-content: space-between;
+    padding: 1vw;
+    border-bottom: 2px solid #d8d8d8;
+}
+
+section.finalizandoPedido div.compraFinal ul li p {
+    margin: 0 3vw;
+    font-size: 0.8rem;
+}
+
+section.finalizandoPedido div.compraFinal button.pagamento {
+    display: block; /* faz o botão se comportar como bloco */
+    margin: 1vw auto; /* centraliza automaticamente na horizontal */
+    background-color: #27AE60;
+    border: none;
+    border-radius: 0.3vw;
+    font-weight: 550;
+    color: #fff;
+    text-align: center; 
+    font-size: 0.8rem;
 }
 
 /*Footer CSS*/
@@ -618,7 +720,7 @@ footer {
         'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-a {
+.a {
     color: #ffffff;
 }
 
@@ -655,11 +757,7 @@ a {
 .contato-pagamento h3 {
     font-size: 18px;
     font-weight: 600;
-
 }
-
-
-
 
 .contato-pagamento ul {
     color: #ffffffa6;
@@ -675,7 +773,7 @@ a {
     padding-right: 10px;
 }
 
-footer p {
+.p {
     text-align: center;
     padding: 1.2vw 0;
 }
