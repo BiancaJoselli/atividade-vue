@@ -542,95 +542,71 @@ section.lancamentos div ul li span {
 
 /*CARRINHO CSS*/
 
-section.carrinho {
+main {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-section.carrinho h1 {
+
+#carrinho h1{
     color: #27AE60;
-    font-size: 1.8rem;
+    margin: 8vw 0 4vw 5vw;
     font-weight: 600;
-    padding: 8vw 0 2vw 14vw;
 }
 
-section.carrinho table {
-    margin: auto;
+.carrinho {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
 }
 
-section.carrinho table thead th {
+.carrinho table {
+    margin: 0 auto; 
+    
+}
+
+.carrinho table thead th {
     font-size: 1.2rem;
     color: #382C2C;
     padding: 1vw 10vw;
     border-bottom: 2px solid #27AE60;
-
-}
-
-section.carrinho table tbody td {
-    text-align: center;
-    padding: 3vw 0 3vw 0;
-    border-bottom: 2px solid #d8d8d8;
-}
-
-section.carrinho button {
-    margin: 5vw 14vw;
-    padding: 1vw 2vw;
-    background-color: #ffff;
-    border: 1px solid #302b3b;
-    border-radius: 0.3vw;
-    font-weight: 550;
-}
-
-section.carrinho>div {
-    display: flex;
-    justify-content: space-between;
-    margin: 5vw 11vw 0 11vw;
-}
-
-section.carrinho div.cupom input {
-    padding: 0 0 0 2vw;
-    width: 18vw;
-    height: 4vw;
-    border: 1.5px solid #2e283a;
-    font-weight: 600;
-    border-radius: 0.3vw;
-}
-
-section.carrinho div button.desconto {
-    padding: 1vw 2vw;
-    background-color: #27AE60;
-    border: none;
-    border-radius: 0.3vw;
-    font-weight: 550;
-    width: 18vw;
-    height: 4vw;
-    color: #ffff;
-}
-
-section.carrinho div div.compraFinal {
-    border: 1.5px solid #2e283a;
-    padding: 2vw;
-    width: 20%;
-}
-
-section.carrinho div div.compraFinal h3 {
     font-weight: 600;
 }
 
-section.carrinho div div.compraFinal ul li {
+.carrinho table tbody tr {
     display: flex;
-    justify-content: space-between;
-    padding: 2vw;
-    border-bottom: 2px solid #d8d8d8;
+    /*align-items: center;
+    padding: 1vw 2vw;*/
 }
 
-section.carrinho div div.compraFinal button.pagamento {
-    margin: 2vw;
-    text-align: center;
-    background-color: #27AE60;
-    border: none;
-    border-radius: 0.3vw;
-    font-weight: 550;
-    color: #ffff;
+.carrinho table tbody tr td {   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carrinho table tbody tr td img{
+    width: 25%;
+    margin: 2vw 0 0 5vw;
+}
+
+.carrinho table tbody tr td {
+    display: flex;
+}
+
+.carrinho table tbody tr td div {
+    margin: 3vw 3vw;
+}
+
+.carrinho table tbody tr td div h3 {
+    font-weight: 600;
+    margin-bottom: 1.2vw;
+    font-size: 1.3vw;
+}
+
+.carrinho table tbody tr td div p:last-child  {
+    font-weight: 600;
+    margin-top: 1.2vw;
+    font-size: 1.2vw;
 }
 
 /*Footer CSS*/
@@ -682,6 +658,9 @@ a {
 
 }
 
+
+
+
 .contato-pagamento ul {
     color: #ffffffa6;
     margin: 2vw 0 3vw 0;
@@ -696,7 +675,7 @@ a {
     padding-right: 10px;
 }
 
-p {
+footer p {
     text-align: center;
     padding: 1.2vw 0;
 }
