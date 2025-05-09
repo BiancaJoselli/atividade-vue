@@ -87,29 +87,31 @@ const carrinho = reactive({
     total: 288.3,
 })
 function adicionarProdutoCarrinho(bookId) {
-    const livro = livros.value.find((book) => book.id === bookId)
-    if (!livro) return
-    const itemCarrinho = carrinho.items.find((item) => item.id === bookId)
-    if (itemCarrinho) {
-        itemCarrinho.quantidade++
-    } else {
-        carrinho.items.push({ ...livro, quantidade: 1 })
-    }
-    console.log(carrinho.items, totalCarrinho.value)
+  const livro = livros.value.find((book) => book.id === bookId);
+  if (!livro) return;
+  const itemCarrinho = carrinho.items.find((item) => item.id === bookId);
+  if (itemCarrinho) {
+    itemCarrinho.quantidade++;
+  } else {
+    carrinho.items.push({ ...livro, quantidade: 1 });
+  }
+  console.log(carrinho.items, totalCarrinho.value);
 }
 
 function removerProdutoCarrinho(bookId) {
-    const index = carrinho.items.findIndex((item) => item.id === bookId)
-    if (index !== -1) {
-        const item = carrinho.items[index]
+  const index = carrinho.items.findIndex((item) => item.id === bookId);
+  if (index !== -1) {
+    const item = carrinho.items[index];
 
-        if (item.quantidade > 1) {
-            item.quantidade--
-        } else {
-            carrinho.items.splice(index, 1) // remove o item do array
-        }
+    if (item.quantidade > 1) {
+      item.quantidade--;
+    } else {
+      carrinho.items.splice(index, 1); // remove o item do array
     }
+  }
 }
+
+
 
 const totalCarrinho = computed(() => {
     return carrinho.items.reduce((total, livro) => {
@@ -342,7 +344,6 @@ header nav div.logo button {
     padding: 0.2vw 0.5vw 0 0.5vw;
     font-size: 1rem;
     color: #231f2d;
-    
 }
 
 header nav div.logo hr {
@@ -696,6 +697,7 @@ section.finalizandoPedido button {
     border-radius: 0.3vw;
 }
 
+
 section.finalizandoPedido button:hover {
     background-color: #231f2d;
     color: #ffff;
@@ -722,6 +724,7 @@ section.finalizandoPedido div.cupom button {
     border: none;
     cursor: pointer;
 }
+
 
 section.finalizandoPedido div.cupom button:hover {
     background-color: #231f2d;
