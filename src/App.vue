@@ -396,6 +396,7 @@ header nav div.icons ul li a {
     color: #27ae60;
     padding: 1vw 1vw;
     margin: 1vw 0;
+    cursor: pointer;
 }
 
 header nav div.icons ul li.linha a {
@@ -566,6 +567,11 @@ section.lancamentos div ul li a {
     color: #ffff;
     padding: 0.5vw 6vw;
     margin: 3vw 0 5vw 0;
+    cursor: pointer;
+}
+
+section.lancamentos div ul li a:hover {
+    background-color: #231f2d;
 }
 
 section.lancamentos a.comprar {
@@ -653,7 +659,7 @@ section.carrinho td.quantidade div {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 25px;
+    gap: 15px;
     border: 0.2px solid black;
     border-radius: 0.5vw;
     font-size: 1rem;
@@ -691,6 +697,14 @@ section.finalizandoPedido button {
     border-radius: 0.3vw;
 }
 
+
+section.finalizandoPedido button:hover {
+    background-color: #231f2d;
+    color: #ffff;
+    border: none;
+    cursor: pointer;
+}
+
 section.finalizandoPedido div.principal {
     display: flex;
     justify-content: space-between;
@@ -708,6 +722,12 @@ section.finalizandoPedido div.cupom button {
     color: #ffff;
     padding: 1.1vw 2vw;
     border: none;
+    cursor: pointer;
+}
+
+
+section.finalizandoPedido div.cupom button:hover {
+    background-color: #231f2d;
 }
 
 section.finalizandoPedido div.compraFinal {
@@ -736,9 +756,7 @@ section.finalizandoPedido div.compraFinal ul li p {
 
 section.finalizandoPedido div.compraFinal button.pagamento {
     display: block;
-    /* faz o botão se comportar como bloco */
     margin: 1vw auto;
-    /* centraliza automaticamente na horizontal */
     background-color: #27ae60;
     border: none;
     border-radius: 0.3vw;
@@ -746,6 +764,10 @@ section.finalizandoPedido div.compraFinal button.pagamento {
     color: #fff;
     text-align: center;
     font-size: 0.8rem;
+}
+
+section.finalizandoPedido div.compraFinal button.pagamento:hover {
+    background-color: #231f2d;
 }
 
 /*Footer CSS*/
